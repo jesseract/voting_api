@@ -4,7 +4,7 @@ class Api::V1::CandidatesController < ApplicationController
     @candidate = Candidate.new(candidate_params)
 
     if @candidate.save
-      redirect_to api_v1_candidates_path, notice: 'Candidate was successfully created.'
+      render json: Candidate.all
     else
       render :new
     end

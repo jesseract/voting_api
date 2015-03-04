@@ -1,9 +1,10 @@
 class Api::V1::VotersController < ApplicationController
 
     def create
-      @voter = Voter.new(params[:name, :party])
+      @voter = Voter.new(voter_params)
       if @voter.save
-        render json: @voter
+        ApiKey.create(voter: @voter)
+        render json: @voter.api_key.access_token
       else
         render json: "Invalid parameters"
       end
@@ -22,7 +23,7 @@ class Api::V1::VotersController < ApplicationController
     end
 
 
-    private def vote_params
+    private def voter_params
         params.require(:voter).permit(:name, :party)
       end
 
