@@ -1,3 +1,4 @@
 class Voter < ActiveRecord::Base
-  has_one :vote
+  has_many :votes
+  has_one :api_key
 end
