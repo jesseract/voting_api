@@ -17,6 +17,11 @@ class Api::V1::VotersController < ApplicationController
     def update
     end
 
+    def index
+      render json: Voter.all
+    end
+
+
     private def vote_params
         params.require(:voter).permit(:name, :party)
       end
